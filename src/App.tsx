@@ -1,10 +1,22 @@
+import { useState } from "react";
+import Cart from "./Components/Cart";
+import ProductList from "./Components/ProductList";
+import Header from "./Components/Header";
+import Footer from "./Components/Footer";
 
 const App = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+  const [viewCart, setViewCart] = useState<boolean>(false);
 
-export default App
+  const pageContent = viewCart ? <Cart /> : <ProductList />;
+
+  const content = (
+    <>
+      <Header viewCart={viewCart} setViewCart={setViewCart} />
+      {pageContent}
+      <Footer viewCart={viewCart} />
+    </>
+  );
+
+  return content;
+};
+export default App;
